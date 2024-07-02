@@ -163,28 +163,28 @@ pub struct AssociatedTokenResolution<'info> {
         associated_token::authority = payer,
         associated_token::mint = mint,
     )]
-    pub ata: Account<'info, TokenAccount>,
+    pub ata: Box<Account<'info, TokenAccount>>,
     #[account(
         init,
         payer = payer,
         associated_token::authority = system_program,
         associated_token::mint = mint,
     )]
-    pub ata2: Account<'info, TokenAccount>,
+    pub ata2: Box<Account<'info, TokenAccount>>,
     #[account(
         init,
         payer = payer,
         associated_token::authority = token_program,
         associated_token::mint = mint,
     )]
-    pub ata3: Account<'info, TokenAccount>,
+    pub ata3: Box<Account<'info, TokenAccount>>,
     #[account(
         init,
         payer = payer,
         associated_token::authority = associated_token_program,
         associated_token::mint = mint,
     )]
-    pub ata4: Account<'info, TokenAccount>,
+    pub ata4: Box<Account<'info, TokenAccount>>,
     #[account(mut)]
     pub payer: Signer<'info>,
     pub system_program: Program<'info, System>,
