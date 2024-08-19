@@ -630,9 +630,13 @@ fn generate_constraint_init_group(
                     // Checks that all the required accounts for this operation are present.
                     #optional_checks
 
+                    ::anchor_lang::solana_program::msg!("before failure");
+
                     let owner_program = #account_ref.owner;
                     if !#if_needed || owner_program == &anchor_lang::solana_program::system_program::ID {
                         #payer_optional_check
+
+                        ::anchor_lang::solana_program::msg!("why are you running???");
 
                         ::anchor_spl::associated_token::create(
                             anchor_lang::context::CpiContext::new(
@@ -647,6 +651,8 @@ fn generate_constraint_init_group(
                                 }
                             )
                         )?;
+
+                        ::anchor_lang::solana_program::msg!("you did not fail???");
                     }
                     let pa: #ty_decl = #from_account_info_unchecked;
                     if #if_needed {
